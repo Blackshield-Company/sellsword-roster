@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fomod>
+  <Name>Sellsword Roster</Name>
+  <Author>synthalorian</Author>
+  <Version>@VERSION@</Version>
+  <Website>https://github.com/synthalorian/sellsword-roster</Website>
+  <Description>A rotating roster of eight named sellswords, each with a trait and a daily wage. Hire them with a lesser power; they use the vanilla follower system and leave if you stop paying. Base game only, no SKSE. Early beta.</Description>
+  <Groups>
+    <element>Followers</element>
+  </Groups>
+</fomod>
