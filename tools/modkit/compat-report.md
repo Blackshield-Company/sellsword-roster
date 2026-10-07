@@ -1,6 +1,6 @@
 # Compatibility report
 
-10 plugins loaded together with Mutagen 0.54.4.0.
+15 plugins loaded together with Mutagen 0.54.4.0.
 
 ## Load order (simulated)
 
@@ -16,8 +16,13 @@
 | 8 | WarBanners.esp | yes | Skyrim.esm | 32 | 0 | FE007800-FE00781F |
 | 9 | Roadwarden.esp | yes | Skyrim.esm | 52 | 0 | FE008800-FE008833 |
 | 10 | SellswordRoster.esp | yes | Skyrim.esm | 60 | 0 | FE009800-FE00983B |
+| 11 | TurncoatContract.esp | yes | Skyrim.esm | 66 | 0 | FE00A800-FE00A841 |
+| 12 | LedgerOfAsh.esp | yes | Skyrim.esm | 62 | 0 | FE00B800-FE00B83D |
+| 13 | OathbreakersPrice.esp | yes | Skyrim.esm | 58 | 0 | FE00C800-FE00C839 |
+| 14 | ChampionsReforge.esp | yes | Skyrim.esm | 68 | 0 | FE00D800-FE00D843 |
+| 15 | BarrowIronPact.esp | yes | Skyrim.esm | 60 | 0 | FE00E800-FE00E83B |
 
-1055 new records; every simulated runtime FormID is unique.
+1369 new records; every simulated runtime FormID is unique.
 
 ## Overrides of existing records
 
@@ -37,8 +42,13 @@ None. No plugin in the set overrides a vanilla record or another plugin's record
 | WarBanners.esp | `WBN_` | 32 | 0 |
 | Roadwarden.esp | `RWD_` | 52 | 0 |
 | SellswordRoster.esp | `SSR_` | 60 | 0 |
+| TurncoatContract.esp | `TTC_` | 66 | 0 |
+| LedgerOfAsh.esp | `LOA_` | 62 | 0 |
+| OathbreakersPrice.esp | `OBP_` | 58 | 0 |
+| ChampionsReforge.esp | `CRF_` | 68 | 0 |
+| BarrowIronPact.esp | `BIP_` | 60 | 0 |
 
-1055 EditorIDs across the set; collisions: 0.
+1369 EditorIDs across the set; collisions: 0.
 
 ## Globals
 
@@ -54,8 +64,13 @@ None. No plugin in the set overrides a vanilla record or another plugin's record
 | WarBanners.esp | 9 |
 | Roadwarden.esp | 26 |
 | SellswordRoster.esp | 17 |
+| TurncoatContract.esp | 8 |
+| LedgerOfAsh.esp | 7 |
+| OathbreakersPrice.esp | 6 |
+| ChampionsReforge.esp | 8 |
+| BarrowIronPact.esp | 6 |
 
-132 globals in total, no two with the same EditorID.
+167 globals in total, no two with the same EditorID.
 
 ## Papyrus scripts
 
@@ -71,8 +86,13 @@ None. No plugin in the set overrides a vanilla record or another plugin's record
 | WarBanners.esp | 4 |
 | Roadwarden.esp | 2 |
 | SellswordRoster.esp | 4 |
+| TurncoatContract.esp | 12 |
+| LedgerOfAsh.esp | 11 |
+| OathbreakersPrice.esp | 11 |
+| ChampionsReforge.esp | 12 |
+| BarrowIronPact.esp | 12 |
 
-43 distinct script names; duplicates: 0.
+101 distinct script names; duplicates: 0.
 
 ## Links between plugins in the set
 
@@ -106,38 +126,38 @@ None. No plugin in the set overrides a vanilla record or another plugin's record
 - BlackshieldCodex.esp -> BountiesOfOblivion.esp: GlobalFloat BOO_FavorSanguine
 - BlackshieldCodex.esp -> BountiesOfOblivion.esp: GlobalFloat BOO_FavorVaermina
 
+## Soft references (Game.GetFormFromFile)
+
+| Plugin | Script | Target | Result |
+|---|---|---|---|
+| TurncoatContract.esp | TTC_SeriesScript.psc:20 | BlackshieldCompany.esp 000805 (BSC_Rank) | resolves: GlobalFloat BSC_Rank |
+| TurncoatContract.esp | TTC_SeriesScript.psc:26 | SteelOath.esp 00080C (SOT_ActiveCount) | resolves: GlobalFloat SOT_ActiveCount |
+| TurncoatContract.esp | TTC_SeriesScript.psc:32 | ContractHunter.esp 00081B (CHT_OpenCount) | resolves: GlobalFloat CHT_OpenCount |
+| LedgerOfAsh.esp | LOA_SeriesScript.psc:19 | BountiesOfOblivion.esp 00080B (BOO_ContractsDone) | resolves: GlobalFloat BOO_ContractsDone |
+| LedgerOfAsh.esp | LOA_SeriesScript.psc:25 | TurncoatContract.esp 000802 (TTC_State) | resolves: GlobalFloat TTC_State |
+| OathbreakersPrice.esp | OBP_SeriesScript.psc:19 | SteelOath.esp 00080C (SOT_ActiveCount) | resolves: GlobalFloat SOT_ActiveCount |
+| OathbreakersPrice.esp | OBP_SeriesScript.psc:25 | ContractHunter.esp 00081C (CHT_BountiesClaimed) | resolves: GlobalFloat CHT_BountiesClaimed |
+| ChampionsReforge.esp | CRF_SeriesScript.psc:18 | EmberSmithing.esp 000800 (EMB_HeatTemperedIronSword) | resolves: Weapon EMB_HeatTemperedIronSword |
+| ChampionsReforge.esp | CRF_SeriesScript.psc:24 | GrayManeDebt.esp 000802 (GMD_State) | resolves: GlobalFloat GMD_State |
+| ChampionsReforge.esp | CRF_TemperScript.psc:53 | ccffbsse001-imperialdragon.esl 000D69 | plugin not in set: returns None, guarded |
+| ChampionsReforge.esp | CRF_TemperScript.psc:63 | ccffbsse001-imperialdragon.esl 000D68 | plugin not in set: returns None, guarded |
+| ChampionsReforge.esp | CRF_TemperScript.psc:67 | ccffbsse001-imperialdragon.esl 00084D | plugin not in set: returns None, guarded |
+| ChampionsReforge.esp | CRF_TemperScript.psc:71 | ccffbsse001-imperialdragon.esl 000848 | plugin not in set: returns None, guarded |
+| ChampionsReforge.esp | CRF_TemperScript.psc:75 | ccffbsse001-imperialdragon.esl 00084A | plugin not in set: returns None, guarded |
+| ChampionsReforge.esp | CRF_TemperScript.psc:80 | ccffbsse001-imperialdragon.esl 00084C | plugin not in set: returns None, guarded |
+| ChampionsReforge.esp | CRF_TemperScript.psc:84 | ccffbsse001-imperialdragon.esl 000849 | plugin not in set: returns None, guarded |
+| ChampionsReforge.esp | CRF_TemperScript.psc:88 | ccffbsse001-imperialdragon.esl 000D6A | plugin not in set: returns None, guarded |
+| ChampionsReforge.esp | CRF_TemperScript.psc:92 | ccffbsse001-imperialdragon.esl 000D6B | plugin not in set: returns None, guarded |
+| ChampionsReforge.esp | CRF_TemperScript.psc:96 | ccffbsse001-imperialdragon.esl 000D6C | plugin not in set: returns None, guarded |
+| BarrowIronPact.esp | BIP_SeriesScript.psc:18 | GrayManeDebt.esp 000802 (GMD_State) | resolves: GlobalFloat GMD_State |
+| BarrowIronPact.esp | BIP_SeriesScript.psc:24 | Roadwarden.esp 00081A (RWD_EncounterCount) | resolves: GlobalFloat RWD_EncounterCount |
+
+11 soft reference(s) resolve inside the set; 10 point at plugins not in the set (skipped at runtime).
+
 ## Installed files
 
-85 distinct installed paths across 10 archives; collisions: 0.
+283 distinct installed paths across 15 archives; collisions: 0.
 
 ## Result
 
 **PASS**: no errors.
-
-## Archives checked
-
-Produced by `tools/modkit/compat-series.sh --local dist/SellswordRoster-0.1.0.zip --report tools/modkit/compat-report.md` on 2026-10-06. The first nine archives were downloaded from their GitHub releases (v0.1.0). The tenth is this repository's v0.1.0 build.
-
-| Archive | sha256 |
-|---|---|
-| BlackshieldCompany-0.1.0.zip | 820b57753c71347a45bbddf6ca4d1d22457dccfbb44a8fcb0aa821a6803a3b8c |
-| BountiesOfOblivion-0.1.0.zip | d99bb3455ec41ebf7cc6722262a752a83b5dcc00ab22cb9182efbb5de316caeb |
-| ContractHunter-0.1.0.zip | e96fde2641e2fa27ee9a767b687033ac346475a19568b2941af9704971655ffe |
-| SteelOath-0.1.0.zip | 6764aefc8beb8aaa0a14378f50bf092908b8e6e0f8ea16c51153b50379208ef8 |
-| EmberSmithing-0.1.0.zip | d3fb31257e796478c2bada653df83df2e90ff81476025c3a34b0ecc2fe7f9e96 |
-| GrayManeDebt-0.1.0.zip | 69ea29dbfd1dc9dae8093684768663b1d17dba1a47a8f83162015a8eefa5e72a |
-| BlackshieldCodex-0.1.0.zip | e79ec7aae4cfea450bc22aae69e75acb836bf7d8d9cff3353ae805783b2a55f7 |
-| WarBanners-0.1.0.zip | 5151dab8dc2bf8a8bae48c3b23a2e133a7effd2b2679b24e5cb0eba01a640660 |
-| Roadwarden-0.1.0.zip | 7e8435325467fa18b85188858bb8d7bb3eb43aba8577ddb9485b0c78639d25a1 |
-| SellswordRoster-0.1.0.zip | see the v0.1.0 release (the record check above doesn't depend on archive timestamps) |
-
-## Runtime interactions (not visible to a record check; reviewed by hand)
-
-| Shared thing | Mods | How it's handled |
-|---|---|---|
-| Vanilla follower slot (`DialogueFollower`, `PlayerFollowerCount`) | Blackshield Company (company sellsword), Sellsword Roster | Both check `PlayerFollowerCount` before `SetFollower`, so only one follower at a time, as in vanilla. Neither edits the follower quest. |
-| Outdoor hostile spawns | Contract Hunter (avengers), Roadwarden (encounters) | Roadwarden waits 2 minutes after any combat and spawns 10-50 m behind the player. Contract Hunter holds avengers while the player is in combat. They can still overlap if an avenger tick lands while you walk toward a non-hostile Roadwarden encounter. |
-| Player teammates | War Banners (rally aliases), Blackshield Company, Sellsword Roster | War Banners only reads teammates (Find Matching Reference, `GetPlayerTeammate`) and casts a short buff, so roster and company sellswords are rallied like any follower. |
-| Gold | Blackshield Company (treasury), Contract Hunter (pay), Roadwarden (rewards, tolls), Sellsword Roster (wages) | Plain `AddItem` / `RemoveItem` of `Gold001`. No shared state. |
-| Lesser powers | War Banners, Sellsword Roster, Contract Hunter (ledger), and others | Separate spells; no shared records. |
-| Cross-plugin records | Blackshield Codex -> five first-wave plugins | The only plugin with masters beyond Skyrim.esm. All 29 links resolve (listed above). |

@@ -39,6 +39,7 @@ try
     foreach (var input in inputs)
     {
         var files = new List<string>();
+        var sources = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         string pluginPath;
         if (input.EndsWith(".zip", StringComparison.OrdinalIgnoreCase))
         {
@@ -52,6 +53,11 @@ try
                 Directory.CreateDirectory(Path.GetDirectoryName(dst)!);
                 e.ExtractToFile(dst, true);
             }
+            foreach (var e in z.Entries.Where(e => e.FullName.EndsWith(".psc", StringComparison.OrdinalIgnoreCase)))
+            {
+                using var r = new StreamReader(e.Open());
+                sources[Path.GetFileName(e.FullName)] = r.ReadToEnd();
+            }
             pluginPath = Directory.EnumerateFiles(dir, "*.es?").Single();
         }
         else
@@ -60,7 +66,7 @@ try
             files.Add(Path.GetFileName(input));
         }
         var mod = SkyrimMod.CreateFromBinaryOverlay(pluginPath, SkyrimRelease.SkyrimSE);
-        plugins.Add(new Plugin(Path.GetFileName(input), mod, files));
+        plugins.Add(new Plugin(Path.GetFileName(input), mod, files) { Sources = sources });
     }
 
     var errors = new List<string>();
@@ -191,6 +197,50 @@ try
     if (crossLinks == 0) sb.AppendLine("None: the plugins do not reference each other's records.");
     sb.AppendLine();
 
+    // --- Soft (runtime) references ---------------------------------------------------------------
+    // Game.GetFormFromFile(0xID, "Plugin.esp") calls in the shipped Papyrus sources. Convention:
+    //   <Type> x = Game.GetFormFromFile(0x806, "BlackshieldCompany.esp") as <Type> ; soft: BSC_Renown
+    // The target must exist (and match the EditorID after "soft:") when the plugin is in the set, and the
+    // result must be tested (If x / && x) before use so a missing plugin is skipped. Calls into plugins outside
+    // the set are reported as absent and must still be guarded.
+    sb.AppendLine("## Soft references (Game.GetFormFromFile)").AppendLine();
+    var softRx = new System.Text.RegularExpressions.Regex(@"(\w+)\s*=\s*Game\.GetFormFromFile\(\s*0x([0-9A-Fa-f]+)\s*,\s*""([^""]+)""\s*\)(?:\s+as\s+\w+)?(?:\s*;\s*soft:\s*(\w+))?", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+    var anyCall = new System.Text.RegularExpressions.Regex(@"GetFormFromFile\s*\(", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+    var byFile = plugins.ToDictionary(p => p.Mod.ModKey.FileName.String, StringComparer.OrdinalIgnoreCase);
+    int softResolved = 0, softAbsent = 0;
+    sb.AppendLine("| Plugin | Script | Target | Result |").AppendLine("|---|---|---|---|");
+    foreach (var p in plugins)
+        foreach (var (file, text) in p.Sources.OrderBy(k => k.Key))
+        {
+            // Blank out {doc comments} (keeping line breaks) so prose that mentions the function is not scanned.
+            var stripped = System.Text.RegularExpressions.Regex.Replace(text, @"\{[^}]*\}", m => new string(m.Value.Select(c => c == '\n' ? '\n' : ' ').ToArray()));
+            var lines = stripped.Split('\n');
+            for (int li = 0; li < lines.Length; li++)
+            {
+                var line = lines[li];
+                var code = line.TrimStart();
+                if (code.StartsWith(";") || code.StartsWith("Form Function GetFormFromFile", StringComparison.OrdinalIgnoreCase)) continue;
+                if (!anyCall.IsMatch(line)) continue;
+                var m = softRx.Match(line);
+                if (!m.Success) { errors.Add($"{p.Name}: {file}:{li + 1}: GetFormFromFile call does not follow the 'x = Game.GetFormFromFile(0xID, \"File\")' convention"); continue; }
+                var v = m.Groups[1].Value; var id = Convert.ToUInt32(m.Groups[2].Value, 16); var target = m.Groups[3].Value; var expect = m.Groups[4].Value;
+                var rest = string.Join("\n", lines.Skip(li + 1));
+                var guarded = System.Text.RegularExpressions.Regex.IsMatch(rest, $@"\b(If|ElseIf|&&|\|\||Return)\s*!?\s*\(?\s*{System.Text.RegularExpressions.Regex.Escape(v)}\b", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                if (!guarded) errors.Add($"{p.Name}: {file}:{li + 1}: result '{v}' of GetFormFromFile is never tested for None");
+                string result;
+                if (byFile.TryGetValue(target, out var tp))
+                {
+                    var rec = tp.Own.FirstOrDefault(r => (r.FormKey.ID & 0xFFFFFF) == id);
+                    if (rec == null) { errors.Add($"{p.Name}: {file}: {target} has no record {id:X6}"); result = "MISSING"; }
+                    else if (expect != "" && !string.Equals(rec.EditorID, expect, StringComparison.OrdinalIgnoreCase)) { errors.Add($"{p.Name}: {file}: {target} {id:X6} is {rec.EditorID}, expected {expect}"); result = $"WRONG ({rec.EditorID})"; }
+                    else { softResolved++; result = $"resolves: {rec.Registration.ClassType.Name} {rec.EditorID}"; }
+                }
+                else { softAbsent++; result = guarded ? "plugin not in set: returns None, guarded" : "plugin not in set: UNGUARDED"; }
+                sb.AppendLine($"| {p.Mod.ModKey} | {file}:{li + 1} | {target} {id:X6}{(expect != "" ? " (" + expect + ")" : "")} | {result} |");
+            }
+        }
+    sb.AppendLine().AppendLine($"{softResolved} soft reference(s) resolve inside the set; {softAbsent} point at plugins not in the set (skipped at runtime).").AppendLine();
+
     // --- Installed files --------------------------------------------------------------------------
     sb.AppendLine("## Installed files").AppendLine();
     var fileOwners = plugins.SelectMany(p => p.Files.Select(f => (p, f))).GroupBy(x => x.f, StringComparer.OrdinalIgnoreCase).ToList();
@@ -235,6 +285,7 @@ sealed class Plugin
     public List<ModKey> Masters { get; }
     public bool Esl { get; }
     public string Prefix { get; set; } = "";
+    public Dictionary<string, string> Sources { get; init; } = new();
 
     private HashSet<string>? _scripts;
     public HashSet<string> ScriptNames()

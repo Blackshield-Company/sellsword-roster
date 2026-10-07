@@ -27,7 +27,9 @@ The build tooling for the Blackshield mod series, written to be reused by every 
 
 ## Changelog
 
-- **Sellsword Roster (mod 10):** `compat-series.sh` + `series.txt` load all ten plugins of the series together (release archives from GitHub, or local builds with `--local`) and write `compat-report.md`, which holds the current ten-plugin report. `Vmad.IntList`, `Vmad.StrList` and `Vmad.Str` fill `Int[]`, `String[]` and `String` properties, and the validator now checks the kind of every array or string property against its declaration. `DialogueFollowerScript` stub: `DismissFollower`.
+- **Third wave (mods 11-15: Turncoat Contract, Ledger of Ash, Oathbreaker's Price, Champion's Reforge, Barrow-Iron Pact):** `Modkit.Compat` now reads the Papyrus sources in each archive and checks soft references. Every `x = Game.GetFormFromFile(0xID, "File.esp") [as T] ; soft: EditorID` call must be guarded afterwards (`If x`, `&&`, `||`, `Return`). When the target plugin is in the checked set, the FormID must resolve to a record with that EditorID; when it isn't, the call is listed as safely skipped. Stubs: `Game.GetFormFromFile` (vanilla, not SKSE), `Actor.IsEquipped`/`EquipItem`, `Form.RegisterForUpdateGameTime`. The five generators share `Kit.cs`/`Program.cs`/`Vanilla.cs`.
+
+- **Sellsword Roster (mod 10):** `compat-series.sh` + `series.txt` load all ten plugins of the series together (release archives from GitHub, or local builds with `--local`) and write `compat-report.md`, which holds the current current series report (15 plugins since the third wave). `Vmad.IntList`, `Vmad.StrList` and `Vmad.Str` fill `Int[]`, `String[]` and `String` properties, and the validator now checks the kind of every array or string property against its declaration. `DialogueFollowerScript` stub: `DismissFollower`.
 
 - **Roadwarden (mod 9):** stubs `Actor.GetActorValue`/`DamageActorValue`/`RestoreActorValue`/`GetSitState`/`GetCombatTarget`/`IsHostileToActor`, `ObjectReference.GetParentCell`, `Cell.IsAttached`, `FormList.GetSize`/`GetAt`. (Papyrus names are case-insensitive: a variable `crumbs` and a property `CRUMBS` clash, and `parent` is a reserved word.)
 

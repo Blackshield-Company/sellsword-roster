@@ -20,3 +20,4 @@ EndEvent
 Event OnSleepStop(Bool abInterrupted)
 EndEvent
 Bool Function HasKeyword(Keyword akKeyword) native
+Function RegisterForUpdateGameTime(Float afInterval) native

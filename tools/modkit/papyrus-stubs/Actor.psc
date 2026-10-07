@@ -35,3 +35,5 @@ Function RestoreActorValue(String asValueName, Float afAmount) native
 Int Function GetSitState() native
 Actor Function GetCombatTarget() native
 Bool Function IsHostileToActor(Actor akActor) native
+Bool Function IsEquipped(Form akItem) native
+Function EquipItem(Form akItem, Bool abPreventRemoval = False, Bool abSilent = False) native
