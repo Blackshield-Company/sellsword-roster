@@ -1,7 +1,7 @@
 # The synthalorian Skyrim series: repo, release tag, archive name (load order as listed).
-blackshield-company   v0.1.0 BlackshieldCompany-0.1.0.zip
+blackshield-company   v0.1.1 BlackshieldCompany-0.1.1.zip
 bounties-of-oblivion  v0.1.0 BountiesOfOblivion-0.1.0.zip
-contract-hunter       v0.1.0 ContractHunter-0.1.0.zip
+contract-hunter       v0.1.1 ContractHunter-0.1.1.zip
 steel-oath            v0.1.0 SteelOath-0.1.0.zip
 ember-smithing        v0.1.0 EmberSmithing-0.1.0.zip
 the-gray-mane-debt    v0.1.0 GrayManeDebt-0.1.0.zip
