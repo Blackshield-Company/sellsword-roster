@@ -15,3 +15,4 @@ oathbreakers-price    v0.1.1 OathbreakersPrice-0.1.1.zip
 champions-reforge     v0.1.1 ChampionsReforge-0.1.1.zip
 barrow-iron-pact      v0.1.1 BarrowIronPact-0.1.1.zip
 company-quartermaster v0.2.0 CompanyQuartermaster-0.2.0.zip
+scarred-steel         v0.1.0 ScarredSteel-0.1.0.zip

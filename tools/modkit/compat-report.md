@@ -1,6 +1,6 @@
 # Compatibility report
 
-16 plugins loaded together with Mutagen 0.54.4.0.
+17 plugins loaded together with Mutagen 0.54.4.0.
 
 ## Load order (simulated)
 
@@ -22,8 +22,9 @@
 | 14 | ChampionsReforge.esp | yes | Skyrim.esm | 68 | 0 | FE00D800-FE00D843 |
 | 15 | BarrowIronPact.esp | yes | Skyrim.esm | 63 | 0 | FE00E800-FE00E83E |
 | 16 | CompanyQuartermaster.esp | yes | Skyrim.esm | 72 | 0 | FE00F800-FE00F847 |
+| 17 | ScarredSteel.esp | yes | Skyrim.esm | 37 | 0 | FE010800-FE010824 |
 
-1466 new records; every simulated runtime FormID is unique.
+1503 new records; every simulated runtime FormID is unique.
 
 ## Overrides of existing records
 
@@ -49,8 +50,9 @@ None. No plugin in the set overrides a vanilla record or another plugin's record
 | ChampionsReforge.esp | `CRF_` | 68 | 0 |
 | BarrowIronPact.esp | `BIP_` | 63 | 0 |
 | CompanyQuartermaster.esp | `CQM_` | 72 | 0 |
+| ScarredSteel.esp | `SCS_` | 37 | 0 |
 
-1466 EditorIDs across the set; collisions: 0.
+1503 EditorIDs across the set; collisions: 0.
 
 ## Globals
 
@@ -72,8 +74,9 @@ None. No plugin in the set overrides a vanilla record or another plugin's record
 | ChampionsReforge.esp | 8 |
 | BarrowIronPact.esp | 6 |
 | CompanyQuartermaster.esp | 12 |
+| ScarredSteel.esp | 16 |
 
-180 globals in total, no two with the same EditorID.
+196 globals in total, no two with the same EditorID.
 
 ## Papyrus scripts
 
@@ -95,8 +98,9 @@ None. No plugin in the set overrides a vanilla record or another plugin's record
 | ChampionsReforge.esp | 13 |
 | BarrowIronPact.esp | 14 |
 | CompanyQuartermaster.esp | 3 |
+| ScarredSteel.esp | 3 |
 
-118 distinct script names; duplicates: 0.
+121 distinct script names; duplicates: 0.
 
 ## Links between plugins in the set
 
@@ -158,12 +162,13 @@ None. No plugin in the set overrides a vanilla record or another plugin's record
 | BarrowIronPact.esp | BIP_SeriesScript.psc:18 | GrayManeDebt.esp 000802 (GMD_State) | resolves: GlobalFloat GMD_State |
 | BarrowIronPact.esp | BIP_SeriesScript.psc:24 | Roadwarden.esp 00081A (RWD_EncounterCount) | resolves: GlobalFloat RWD_EncounterCount |
 | CompanyQuartermaster.esp | CQM_QuartermasterScript.psc:115 | EmberSmithing.esp 000803 (EMB_EmberForgedIronSword) | resolves: Weapon EMB_EmberForgedIronSword |
+| ScarredSteel.esp | SCS_WearScript.psc:57 | EmberSmithing.esp 000803 (EMB_EmberForgedIronSword) | resolves: Weapon EMB_EmberForgedIronSword |
 
-12 soft reference(s) resolve inside the set; 12 point at plugins not in the set (skipped at runtime).
+13 soft reference(s) resolve inside the set; 12 point at plugins not in the set (skipped at runtime).
 
 ## Installed files
 
-309 distinct installed paths across 16 archives; collisions: 0.
+314 distinct installed paths across 17 archives; collisions: 0.
 
 ## Result
 
