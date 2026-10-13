@@ -1,28 +1,29 @@
 # Compatibility report
 
-15 plugins loaded together with Mutagen 0.54.4.0.
+16 plugins loaded together with Mutagen 0.54.4.0.
 
 ## Load order (simulated)
 
 | # | Plugin | ESL | Masters | New records | Overrides | Runtime FormIDs |
 |---|---|---|---|---|---|---|
-| 1 | BlackshieldCompany.esp | yes | Skyrim.esm | 53 | 0 | FE000800-FE000834 |
+| 1 | BlackshieldCompany.esp | yes | Skyrim.esm | 54 | 0 | FE000800-FE000835 |
 | 2 | BountiesOfOblivion.esp | yes | Skyrim.esm | 81 | 0 | FE001800-FE001850 |
-| 3 | ContractHunter.esp | yes | Skyrim.esm | 86 | 0 | FE002800-FE002855 |
+| 3 | ContractHunter.esp | yes | Skyrim.esm | 87 | 0 | FE002800-FE002856 |
 | 4 | SteelOath.esp | yes | Skyrim.esm | 56 | 0 | FE003800-FE003837 |
 | 5 | EmberSmithing.esp | yes | Skyrim.esm | 537 | 0 | FE004800-FE004A18 |
-| 6 | GrayManeDebt.esp | yes | Skyrim.esm | 53 | 0 | FE005800-FE005834 |
+| 6 | GrayManeDebt.esp | yes | Skyrim.esm | 56 | 0 | FE005800-FE005837 |
 | 7 | BlackshieldCodex.esp | yes | Skyrim.esm, BlackshieldCompany.esp, BountiesOfOblivion.esp, ContractHunter.esp, SteelOath.esp, EmberSmithing.esp | 45 | 0 | FE006800-FE00682C |
-| 8 | WarBanners.esp | yes | Skyrim.esm | 32 | 0 | FE007800-FE00781F |
-| 9 | Roadwarden.esp | yes | Skyrim.esm | 52 | 0 | FE008800-FE008833 |
+| 8 | WarBanners.esp | yes | Skyrim.esm | 39 | 0 | FE007800-FE007826 |
+| 9 | Roadwarden.esp | yes | Skyrim.esm | 53 | 0 | FE008800-FE008834 |
 | 10 | SellswordRoster.esp | yes | Skyrim.esm | 60 | 0 | FE009800-FE00983B |
-| 11 | TurncoatContract.esp | yes | Skyrim.esm | 66 | 0 | FE00A800-FE00A841 |
-| 12 | LedgerOfAsh.esp | yes | Skyrim.esm | 62 | 0 | FE00B800-FE00B83D |
-| 13 | OathbreakersPrice.esp | yes | Skyrim.esm | 58 | 0 | FE00C800-FE00C839 |
+| 11 | TurncoatContract.esp | yes | Skyrim.esm | 69 | 0 | FE00A800-FE00A844 |
+| 12 | LedgerOfAsh.esp | yes | Skyrim.esm | 65 | 0 | FE00B800-FE00B840 |
+| 13 | OathbreakersPrice.esp | yes | Skyrim.esm | 61 | 0 | FE00C800-FE00C83C |
 | 14 | ChampionsReforge.esp | yes | Skyrim.esm | 68 | 0 | FE00D800-FE00D843 |
-| 15 | BarrowIronPact.esp | yes | Skyrim.esm | 60 | 0 | FE00E800-FE00E83B |
+| 15 | BarrowIronPact.esp | yes | Skyrim.esm | 63 | 0 | FE00E800-FE00E83E |
+| 16 | CompanyQuartermaster.esp | yes | Skyrim.esm | 72 | 0 | FE00F800-FE00F847 |
 
-1369 new records; every simulated runtime FormID is unique.
+1466 new records; every simulated runtime FormID is unique.
 
 ## Overrides of existing records
 
@@ -32,23 +33,24 @@ None. No plugin in the set overrides a vanilla record or another plugin's record
 
 | Plugin | Prefix | EditorIDs | Off-prefix |
 |---|---|---|---|
-| BlackshieldCompany.esp | `BSC_` | 53 | 0 |
+| BlackshieldCompany.esp | `BSC_` | 54 | 0 |
 | BountiesOfOblivion.esp | `BOO_` | 81 | 0 |
-| ContractHunter.esp | `CHT_` | 86 | 0 |
+| ContractHunter.esp | `CHT_` | 87 | 0 |
 | SteelOath.esp | `SOT_` | 56 | 0 |
 | EmberSmithing.esp | `EMB_` | 537 | 0 |
-| GrayManeDebt.esp | `GMD_` | 53 | 0 |
+| GrayManeDebt.esp | `GMD_` | 56 | 0 |
 | BlackshieldCodex.esp | `BCX_` | 45 | 0 |
-| WarBanners.esp | `WBN_` | 32 | 0 |
-| Roadwarden.esp | `RWD_` | 52 | 0 |
+| WarBanners.esp | `WBN_` | 39 | 0 |
+| Roadwarden.esp | `RWD_` | 53 | 0 |
 | SellswordRoster.esp | `SSR_` | 60 | 0 |
-| TurncoatContract.esp | `TTC_` | 66 | 0 |
-| LedgerOfAsh.esp | `LOA_` | 62 | 0 |
-| OathbreakersPrice.esp | `OBP_` | 58 | 0 |
+| TurncoatContract.esp | `TTC_` | 69 | 0 |
+| LedgerOfAsh.esp | `LOA_` | 65 | 0 |
+| OathbreakersPrice.esp | `OBP_` | 61 | 0 |
 | ChampionsReforge.esp | `CRF_` | 68 | 0 |
-| BarrowIronPact.esp | `BIP_` | 60 | 0 |
+| BarrowIronPact.esp | `BIP_` | 63 | 0 |
+| CompanyQuartermaster.esp | `CQM_` | 72 | 0 |
 
-1369 EditorIDs across the set; collisions: 0.
+1466 EditorIDs across the set; collisions: 0.
 
 ## Globals
 
@@ -62,37 +64,39 @@ None. No plugin in the set overrides a vanilla record or another plugin's record
 | GrayManeDebt.esp | 5 |
 | BlackshieldCodex.esp | 9 |
 | WarBanners.esp | 9 |
-| Roadwarden.esp | 26 |
+| Roadwarden.esp | 27 |
 | SellswordRoster.esp | 17 |
 | TurncoatContract.esp | 8 |
 | LedgerOfAsh.esp | 7 |
 | OathbreakersPrice.esp | 6 |
 | ChampionsReforge.esp | 8 |
 | BarrowIronPact.esp | 6 |
+| CompanyQuartermaster.esp | 12 |
 
-167 globals in total, no two with the same EditorID.
+180 globals in total, no two with the same EditorID.
 
 ## Papyrus scripts
 
 | Plugin | Scripts (attached + shipped .pex) |
 |---|---|
-| BlackshieldCompany.esp | 5 |
+| BlackshieldCompany.esp | 6 |
 | BountiesOfOblivion.esp | 5 |
-| ContractHunter.esp | 5 |
+| ContractHunter.esp | 6 |
 | SteelOath.esp | 3 |
 | EmberSmithing.esp | 0 |
-| GrayManeDebt.esp | 13 |
+| GrayManeDebt.esp | 16 |
 | BlackshieldCodex.esp | 2 |
 | WarBanners.esp | 4 |
 | Roadwarden.esp | 2 |
 | SellswordRoster.esp | 4 |
-| TurncoatContract.esp | 12 |
-| LedgerOfAsh.esp | 11 |
-| OathbreakersPrice.esp | 11 |
-| ChampionsReforge.esp | 12 |
-| BarrowIronPact.esp | 12 |
+| TurncoatContract.esp | 14 |
+| LedgerOfAsh.esp | 13 |
+| OathbreakersPrice.esp | 13 |
+| ChampionsReforge.esp | 13 |
+| BarrowIronPact.esp | 14 |
+| CompanyQuartermaster.esp | 3 |
 
-101 distinct script names; duplicates: 0.
+118 distinct script names; duplicates: 0.
 
 ## Links between plugins in the set
 
@@ -130,6 +134,8 @@ None. No plugin in the set overrides a vanilla record or another plugin's record
 
 | Plugin | Script | Target | Result |
 |---|---|---|---|
+| SteelOath.esp | SOT_OathScript.psc:452 | Dawnguard.esm 000800 | plugin not in set: returns None, guarded |
+| SteelOath.esp | SOT_OathScript.psc:456 | Dawnguard.esm 007C25 | plugin not in set: returns None, guarded |
 | TurncoatContract.esp | TTC_SeriesScript.psc:20 | BlackshieldCompany.esp 000805 (BSC_Rank) | resolves: GlobalFloat BSC_Rank |
 | TurncoatContract.esp | TTC_SeriesScript.psc:26 | SteelOath.esp 00080C (SOT_ActiveCount) | resolves: GlobalFloat SOT_ActiveCount |
 | TurncoatContract.esp | TTC_SeriesScript.psc:32 | ContractHunter.esp 00081B (CHT_OpenCount) | resolves: GlobalFloat CHT_OpenCount |
@@ -151,12 +157,13 @@ None. No plugin in the set overrides a vanilla record or another plugin's record
 | ChampionsReforge.esp | CRF_TemperScript.psc:96 | ccffbsse001-imperialdragon.esl 000D6C | plugin not in set: returns None, guarded |
 | BarrowIronPact.esp | BIP_SeriesScript.psc:18 | GrayManeDebt.esp 000802 (GMD_State) | resolves: GlobalFloat GMD_State |
 | BarrowIronPact.esp | BIP_SeriesScript.psc:24 | Roadwarden.esp 00081A (RWD_EncounterCount) | resolves: GlobalFloat RWD_EncounterCount |
+| CompanyQuartermaster.esp | CQM_QuartermasterScript.psc:115 | EmberSmithing.esp 000803 (EMB_EmberForgedIronSword) | resolves: Weapon EMB_EmberForgedIronSword |
 
-11 soft reference(s) resolve inside the set; 10 point at plugins not in the set (skipped at runtime).
+12 soft reference(s) resolve inside the set; 12 point at plugins not in the set (skipped at runtime).
 
 ## Installed files
 
-283 distinct installed paths across 15 archives; collisions: 0.
+309 distinct installed paths across 16 archives; collisions: 0.
 
 ## Result
 
