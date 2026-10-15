@@ -1,3 +1,5 @@
+![sellsword-roster](.github/preview.png)
+
 # Sellsword Roster
 
 Steel for hire, by name. Sellsword Roster is a small Skyrim Special Edition mod with eight named sellswords. Each one has a background, a trait and a daily wage, and a few of them are looking for work each week. Hire one with a lesser power. They follow you through the vanilla follower system, and they leave if you stop paying.
