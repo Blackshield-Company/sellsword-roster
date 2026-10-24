@@ -81,7 +81,7 @@ Part ways with your sellsword first. As with any scripted mod, prefer not to rem
 [/list]
 
 [size=4][b]Source[/b][/size]
-Open source (MIT): [url=https://github.com/synthalorian/sellsword-roster]github.com/synthalorian/sellsword-roster[/url]
+Open source (MIT): [url=https://github.com/Blackshield-Company/sellsword-roster]github.com/Blackshield-Company/sellsword-roster[/url]
 
 [size=4][b]Credits[/b][/size]
 [list]
